@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sample Project</title>
+  <title>scorp case</title>
   <link rel="stylesheet" href="/main.css">
 </head>
 <body>
   
   <div id="screen">
     <div id="stream">
+      <div tabindex=0 id="live">
+        <i class="icon circle outline"></i>
+        <span id="text-total">187</span>
+      </div>
       <video
         src="/assets/RW20seconds_1.mp4"
-        muted
         autoplay
         loop
       ></video>
     </div>
     
     <div id="messages"></div>
-    
     <div id="animatedGift"></div>
-    
+    <textarea id="message-box" placeholder="Mesaj gönder"></textarea>
   </div>
-  
   <script src="/main.js" type="module"></script>
 </body>
 </html>

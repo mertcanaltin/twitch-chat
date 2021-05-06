@@ -62,7 +62,7 @@ body {
   width: 400px;
   height: 640px;
   margin: 20px auto;
-  border: 1px solid grey;
+border-radius: 25px;
   overflow: hidden;
 }
 
@@ -76,10 +76,10 @@ body {
 }
 
 #messages {
-  height: 242px;
+  height: 8vw;
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 76px;
   left: 0;
   padding: 2px 6px;
   color: white;
@@ -172,4 +172,33 @@ body {
   animation-duration: 2000ms;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+}
+
+
+#message-box {
+  text-align: center;
+    width: 359px;
+    background-color: white;
+    margin-top: -11%;
+    margin-left: -46%;
+    border-radius: 10px;
+    border:0;
+    position: absolute;
+}
+#live {
+    position: absolute;
+    margin-left: 84%;
+    margin-top: 1vw;
+    background: blueviolet;
+    width: 56px;
+    height: 3vw;
+    border: 0;
+    border-radius: 29px;
+    color: white;
+    font-weight: 500;
+}
+
+#text-total {
+  display: inline-block;
+  margin-top: 1vw !important;
 }
