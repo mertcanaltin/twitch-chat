@@ -1,45 +1,87 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+# Sample Project Spec
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+This project is designed to demonstrate your experience regarding the asynchronous nature of modern web apps. We don't think this project will take much of your time but how long you work on it is **not** an important metric.
 
----
+You are given an incomplete web app as part of this assignment. Your task is to implement the missing logic according to the [Application Logic](#Application-Logic) below.
 
-## Edit a file
+You only need to work on the `main.js` file to finish this project. Vanilla javascript should be enough. If you feel more comfortable with them, you can use any superset of javascript (e.g. Typescript), any framework, or any build tool. See [Delivery](#Delivery) below for more info.
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+You are only required to support the latest Desktop versions of Chrome and/or Safari.
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
 
----
+# Application Logic
 
-## Create a file
+- You can assume: The user is only a viewer and cannot interact with the page.
 
-Next, you’ll add a new file to this repository.
+- Messages (`.messages`) part of the UI displays UI elements for events with the *all* types (`MESSAGE`, `GIFT`, `ANIMATED_GIFT`). You imagine Gifts and Animated Gifts as a different type of message regarding this part of the UI.
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+- Animated Gifts have an accompanying full-screen animation. The message UI element and the animation should be in sync. (Both should appear on the screen almost at the same time)
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+- There can only be at most one gift animation visible on screen at any given time. If there is an ongoing gift animation, other/newer Animated Gifts should wait for it to end.
 
----
+- The messages (`.messages`) UI should continue to update behind the gift animation. Other types do not need to wait for gift animation to finish.
 
-## Clone a repository
+- Animated Gifts are prioritized over all other types. Animated Gifts should skip ahead of other type events (`MESSAGE`, `GIFT`).
+  - For example: If you receive `[APIMessageEvent, APIGiftEvent, APIAnimatedGiftEvent]`, user should see them in *Animated Gift, Message, Gift* order.
+  - Hint: Queue**s**
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
+- You are expected to rate limit events when updating the UI.
+  - There can only be one event shown to the user per 500ms.
+  - Hint: Don't rely on event handler for your own timing.
 
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
+- Events with the type `MESSAGE` older than 20 seconds should not be shown to the user.
+  - You can assume: Client and mock server are in sync.
 
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+- Handle duplicate events.
+  - You can use `possibleDuplicateEvent=true` for testing.
+
+
+# Files Provided
+
+NOTE: Code provided is designed to be basic and easy to read. It is not intended to be production-ready and we do not expect you to "fix" it.
+
+## index.html
+
+Includes page layout. Imports the `main.js` and `main.css` files.
+
+## main.js
+
+This is the main file you are expected to edit.
+
+## main.css
+
+CSS for the layout and basic UI.
+
+## api.js
+
+Mock API of this project. Treat it as the networking layer.
+
+NOTE: `JSDoc` type definitions are included here.
+
+## dom_updates.js
+
+Helper methods for dom manipulation.
+
+## assets/*
+
+All static files (e.g. image and video).
+
+
+# Recommendations
+
+- Start by skimming provided files.
+- Make sure to read [Application Logic](#Application-Logic) carefully before coding.
+- It might be helpful to set `seed` and `slowMode` params for `APIWrapper` when debugging.
+
+
+# Delivery
+
+You can send us your work in one of the following ways:
+
+- Public git repo containing all files.
+- Public gist (e.g. [Github](https://gist.github.com/)) containing `main.js` and any other additional files you may have modified.
+- Email us `main.js` file by itself.
+
+NOTE: If you built or minified your work, please don't forget to also send source files along with compiled/generated files.
+

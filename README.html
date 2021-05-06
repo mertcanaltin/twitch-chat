@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sample Project November 2020</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css"
+    integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg=="
+    crossorigin="anonymous" />
+  <style type="text/css">
+    /**
+		 * Minor fixes over default github markdown
+		 */
+    article.markdown-body {
+      background-color: #fff;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 15px auto;
+    }
+
+    @media only screen and (max-width: 900px) {
+      article.markdown-body {
+        font-size: 14px;
+      }
+
+      article.markdown-body h1:hover .anchor .octicon-link,
+      article.markdown-body h2:hover .anchor .octicon-link,
+      article.markdown-body h3:hover .anchor .octicon-link,
+      article.markdown-body h4:hover .anchor .octicon-link,
+      article.markdown-body h5:hover .anchor .octicon-link,
+      article.markdown-body h6:hover .anchor .octicon-link {
+        visibility: hidden;
+      }
+    }
+
+    @media only screen and (max-width: 400px) {
+      article.markdown-body {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <article class="markdown-body">
+    <!-- Generated via Github Markdown - © Scorp 2021 -->
+
+    <h1>
+      <a id="sample-project-spec" class="anchor" href="#sample-project-spec" aria-hidden="true"><span
+          aria-hidden="true" class="octicon octicon-link"></span></a>Sample Project Spec
+    </h1>
+    <p>This project is designed to demonstrate your experience regarding the asynchronous nature of modern web apps. We don't think this project will take much of your time but how long you work on it is <strong>not</strong> an important metric.</p>
+    <p>You are given an incomplete web app as part of this assignment. Your task is to implement the missing logic according to the <a href="#user-content-application-logic">Application Logic</a> below.</p>
+    <p>You only need to work on the <code>main.js</code> file to finish this project. Vanilla javascript should be enough. If you feel more comfortable with them, you can use any superset of javascript (e.g. Typescript), any framework, or any build tool. See <a href="#user-content-delivery">Delivery</a> below for more info.</p>
+    <p>You are only required to support the latest Desktop versions of Chrome and/or Safari.</p>
+    <h1>
+      <a id="application-logic" class="anchor" href="#user-content-application-logic" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+      Application Logic
+    </h1>
+    <ul>
+      <li>
+        <p>You can assume: The user is only a viewer and cannot interact with the page.</p>
+      </li>
+      <li>
+        <p>Messages (<code>.messages</code>) part of the UI displays UI elements for events with the <em>all</em> types (<code>MESSAGE</code>, <code>GIFT</code>, <code>ANIMATED_GIFT</code>). You imagine Gifts and Animated Gifts as a different type of message regarding this part of the UI.</p>
+      </li>
+      <li>
+        <p>Animated Gifts have an accompanying full-screen animation. The message UI element and the animation should be in sync. (Both should appear on the screen almost at the same time)</p>
+      </li>
+      <li>
+        <p>There can only be at most one gift animation visible on screen at any given time. If there is an ongoing gift animation, other/newer Animated Gifts should wait for it to end.</p>
+      </li>
+      <li>
+        <p>The messages (<code>.messages</code>) UI should continue to update behind the gift animation. Other types do not need to wait for gift animation to finish.</p>
+      </li>
+      <li>
+        <p>Animated Gifts are prioritized over all other types. Animated Gifts should skip ahead of other type events (<code>MESSAGE</code>, <code>GIFT</code>).</p>
+        <ul>
+          <li>For example: If you receive <code>[APIMessageEvent, APIGiftEvent, APIAnimatedGiftEvent]</code>, user should see them in <em>Animated Gift, Message, Gift</em> order.</li>
+          <li>Hint: Queue<strong>s</strong></li>
+        </ul>
+      </li>
+      <li>
+        <p>You are expected to rate limit events when updating the UI.</p>
+        <ul>
+          <li>There can only be one event shown to the user per 500ms.</li>
+          <li>Hint: Don't rely on event handler for your own timing.</li>
+        </ul>
+      </li>
+      <li>
+        <p>Events with the type <code>MESSAGE</code> older than 20 seconds should not be shown to the user.</p>
+        <ul>
+          <li>You can assume: Client and mock server are in sync.</li>
+        </ul>
+      </li>
+      <li>
+        <p>Handle duplicate events.</p>
+        <ul>
+          <li>You can use <code>possibleDuplicateEvent=true</code> for testing.</li>
+        </ul>
+      </li>
+    </ul>
+    <h1>
+      <a id="files-provided" class="anchor" href="#files-provided" aria-hidden="true"><span
+          aria-hidden="true" class="octicon octicon-link"></span></a>Files Provided
+    </h1>
+    <p>NOTE: Code provided is designed to be basic and easy to read. It is not intended to be production-ready and we do not expect you to "fix" it.</p>
+    <h2>
+      <a id="indexhtml" class="anchor" href="#indexhtml" aria-hidden="true"><span aria-hidden="true"
+          class="octicon octicon-link"></span></a>index.html
+    </h2>
+    <p>Includes page layout. Imports the <code>main.js</code> and <code>main.css</code> files.</p>
+    <h2>
+      <a id="mainjs" class="anchor" href="#mainjs" aria-hidden="true"><span aria-hidden="true"
+          class="octicon octicon-link"></span></a>main.js
+    </h2>
+    <p>This is the main file you are expected to edit.</p>
+    <h2>
+      <a id="maincss" class="anchor" href="#maincss" aria-hidden="true"><span aria-hidden="true"
+          class="octicon octicon-link"></span></a>main.css
+    </h2>
+    <p>CSS for the layout and basic UI.</p>
+    <h2>
+      <a id="apijs" class="anchor" href="#apijs" aria-hidden="true"><span aria-hidden="true"
+          class="octicon octicon-link"></span></a>api.js
+    </h2>
+    <p>Mock API of this project. Treat it as the networking layer.</p>
+    <p>NOTE: <code>JSDoc</code> type definitions are included here.</p>
+    <h2>
+      <a id="dom_updatesjs" class="anchor" href="#dom_updatesjs" aria-hidden="true"><span
+          aria-hidden="true" class="octicon octicon-link"></span></a>dom_updates.js
+    </h2>
+    <p>Helper methods for dom manipulation.</p>
+    <h2>
+      <a id="assets" class="anchor" href="#assets" aria-hidden="true"><span aria-hidden="true"
+          class="octicon octicon-link"></span></a>assets/*
+    </h2>
+    <p>All static files (e.g. image and video).</p>
+    <h1>
+      <a id="recommendations" class="anchor" href="#recommendations" aria-hidden="true"><span
+          aria-hidden="true" class="octicon octicon-link"></span></a>Recommendations
+    </h1>
+    <ul>
+      <li>Start by skimming provided files.</li>
+      <li>Make sure to read <a href="#user-content-application-logic">Application Logic</a> carefully before coding.</li>
+      <li>It might be helpful to set <code>seed</code> and <code>slowMode</code> params for <code>APIWrapper</code> when
+        debugging.</li>
+    </ul>
+    <h1>
+      <a id="delivery" class="anchor" href="#user-content-delivery" aria-hidden="true"><span aria-hidden="true"
+          class="octicon octicon-link"></span></a>Delivery
+    </h1>
+    <p>You can send us your work in one of the following ways:</p>
+    <ul>
+      <li>Public git repo containing all files.</li>
+      <li>Public gist (e.g. <a href="https://gist.github.com/">Github</a>) containing <code>main.js</code> and any other additional files you may have modified.</li>
+      <li>Email us <code>main.js</code> file by itself.</li>
+    </ul>
+    <p>NOTE: If you built or minified your work, please don't forget to also send source files along with
+      compiled/generated
+      files.</p>
+
+  </article>
+</body>
+
+</html>
